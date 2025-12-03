@@ -105,7 +105,7 @@ vim.o.number = true
 -- vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'a'
+vim.o.mouse = ''
 
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
@@ -357,7 +357,25 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+    },
+    lazy = false,
+  },
+  {
+    'antosha417/nvim-lsp-file-operations',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-neo-tree/neo-tree.nvim',
+    },
+    config = function()
+      require('lsp-file-operations').setup()
+    end,
+  },
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -681,7 +699,8 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
+        tailwindcss = {},
         --
 
         lua_ls = {
@@ -773,6 +792,13 @@ require('lazy').setup({
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
+        html = { 'prettierd' },
+        json = { 'prettierd' },
+        jsonc = { 'prettierd' },
+        javasscript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
       },
     },
   },
